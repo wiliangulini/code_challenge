@@ -1,31 +1,52 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { verify } from 'jsonwebtoken'
+import { jwtVerify } from 'jose'
 
 interface JwtPayload {
   id: string
   role: 'ADMIN' | 'OPERADOR'
   email: string
+  name: string
 }
 
-
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const token = req.cookies.get('token')?.value
-  //  const isDashboard = req.nextUrl.pathname.startsWith('/dashboard')
   const isAdminPage = req.nextUrl.pathname.startsWith('/dashboard/users')
 
-  if (!token) return NextResponse.redirect(new URL('/login', req.url))
+  console.log('Middleware - Path:', req.nextUrl.pathname)
+  console.log('Middleware - Token exists:', !!token)
+  console.log('Middleware - JWT_SECRET exists:', !!process.env.JWT_SECRET)
+
+  if (!token) {
+    console.log('Middleware - No token, redirecting to login')
+    return NextResponse.redirect(new URL('/login', req.url))
+  }
 
   try {
     if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET não definido')
-    const decoded = verify(token, process.env.JWT_SECRET) as JwtPayload
 
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET)
+    const { payload } = await jwtVerify(token, secret)
+
+    // Fazendo cast seguro para JwtPayload
+    const decoded = payload as unknown as JwtPayload
+
+    // Verifica se todas as propriedades esperadas estão presentes
+    if (!decoded.id || !decoded.email || !decoded.role || !decoded.name) {
+      console.log('Middleware - Token missing required fields, redirecting')
+      return NextResponse.redirect(new URL('/login', req.url))
+    }
+
+    console.log('Middleware - Token decoded successfully:', decoded)
 
     if (isAdminPage && decoded.role !== 'ADMIN') {
+      console.log('Middleware - Admin page but not admin role, redirecting')
       return NextResponse.redirect(new URL('/dashboard/maintenance', req.url))
     }
 
+    console.log('Middleware - Allowing request to continue')
     return NextResponse.next()
-  } catch {
+  } catch (error) {
+    console.log('Middleware - Token verification failed:', error)
     return NextResponse.redirect(new URL('/login', req.url))
   }
 }

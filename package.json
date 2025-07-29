@@ -17,6 +17,7 @@
     "cookie": "^1.0.2",
     "express": "^5.1.0",
     "jest-environment-jsdom": "^30.0.5",
+    "jose": "^6.0.12",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.526.0",
