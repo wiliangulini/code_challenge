@@ -37,7 +37,6 @@ function writeDb(data: any) {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2))
 }
 
-// GET - Buscar item por ID
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -62,7 +61,6 @@ export async function GET(
   }
 }
 
-// PUT - Atualizar item
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -109,7 +107,6 @@ export async function PUT(
   }
 }
 
-// DELETE - Excluir item (apenas ADMIN)
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -132,7 +129,6 @@ export async function DELETE(
       return NextResponse.json({ error: 'Item não encontrado' }, { status: 404 })
     }
 
-    // Remove também as manutenções associadas
     db.maintenance = db.maintenance.filter((m: any) => m.itemId !== id)
     db.items.splice(itemIndex, 1)
     writeDb(db)

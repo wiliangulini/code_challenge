@@ -39,7 +39,6 @@ function writeDb(data: any) {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2))
 }
 
-// GET - Listar todas as manutenções
 export async function GET(request: NextRequest) {
   try {
     const user = await verifyToken(request)
@@ -54,7 +53,6 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST - Criar nova manutenção
 export async function POST(request: NextRequest) {
   try {
     const user = await verifyToken(request)
@@ -64,7 +62,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
     const result = maintenanceSchema.safeParse(body)
-    
+
     if (!result.success) {
       return NextResponse.json(
         { error: 'Dados inválidos', details: result.error.issues },
@@ -75,8 +73,7 @@ export async function POST(request: NextRequest) {
     const { itemId, type, description, performedAt, technician, nextScheduled } = result.data
 
     const db = readDb()
-    
-    // Verifica se o item existe (converte tipos para comparação)
+
     const item = db.items.find((item: any) => 
       String(item.id) === String(itemId) || item.id === itemId
     )
@@ -99,7 +96,6 @@ export async function POST(request: NextRequest) {
 
     db.maintenance.push(newMaintenance)
 
-    // Atualiza o status do item para "Em Operação" após manutenção
     const itemIndex = db.items.findIndex((item: any) => 
       String(item.id) === String(itemId) || item.id === itemId
     )

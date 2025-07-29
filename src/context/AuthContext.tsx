@@ -25,7 +25,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
-  // IMPLEMENTAÇÃO DA FUNÇÃO login
   const login = async (email: string, password: string) => {
     try {
       const res = await fetch(`${API}/login`, {
@@ -55,7 +54,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  // IMPLEMENTAÇÃO DA FUNÇÃO logout
   const logout = () => {
     Cookies.remove('token')
     setUser(null)

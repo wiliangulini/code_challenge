@@ -27,10 +27,8 @@ export async function middleware(req: NextRequest) {
     const secret = new TextEncoder().encode(process.env.JWT_SECRET)
     const { payload } = await jwtVerify(token, secret)
 
-    // Fazendo cast seguro para JwtPayload
     const decoded = payload as unknown as JwtPayload
 
-    // Verifica se todas as propriedades esperadas estão presentes
     if (!decoded.id || !decoded.email || !decoded.role || !decoded.name) {
       console.log('Middleware - Token missing required fields, redirecting')
       return NextResponse.redirect(new URL('/login', req.url))

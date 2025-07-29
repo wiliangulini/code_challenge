@@ -31,7 +31,7 @@
   ],
   "items": [
     {
-      "nome": "item teste",
+      "nome": "item1",
       "descricao": "teste item new",
       "localizacao": "localmente",
       "status": "Em Operação",
@@ -43,13 +43,6 @@
       "localizacao": "localmente2",
       "status": "Em Manutenção",
       "id": 2
-    },
-    {
-      "nome": "itemteste2",
-      "descricao": "itemteste2",
-      "localizacao": "localmente2item",
-      "status": "Inativo",
-      "id": 3
     },
     {
       "nome": "teste3",

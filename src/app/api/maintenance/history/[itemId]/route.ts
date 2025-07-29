@@ -33,7 +33,6 @@ function readDb() {
   return JSON.parse(data)
 }
 
-// GET - Histórico de manutenções de um item específico
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ itemId: string }> }
@@ -49,8 +48,7 @@ export async function GET(
     const itemHistory = db.maintenance
       .filter((m: any) => m.itemId === itemId)
       .sort((a: any, b: any) => new Date(b.performedAt).getTime() - new Date(a.performedAt).getTime())
-    
-    // Adiciona o nome do item a cada manutenção
+
     const item = db.items.find((item: any) => item.id === itemId)
     const historyWithItemName = itemHistory.map((m: any) => ({
       ...m,

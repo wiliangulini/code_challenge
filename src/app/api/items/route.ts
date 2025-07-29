@@ -37,7 +37,6 @@ function writeDb(data: any) {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2))
 }
 
-// GET - Listar todos os itens
 export async function GET(request: NextRequest) {
   try {
     const user = await verifyToken(request)
@@ -52,7 +51,6 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST - Criar novo item
 export async function POST(request: NextRequest) {
   try {
     const user = await verifyToken(request)

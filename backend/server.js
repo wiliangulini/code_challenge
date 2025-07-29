@@ -1,7 +1,7 @@
 const jsonServer = require('json-server');
-const jwt = require('jsonwebtoken'); // Importar jsonwebtoken
+const jwt = require('jsonwebtoken');
 const server = jsonServer.create();
-const router = jsonServer.router('db.json'); // Seu arquivo db.json
+const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 const bcrypt = require('bcryptjs');
 const { SECRET_KEY } = require('./config');
@@ -10,9 +10,8 @@ const cors = require('cors');
 server.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 server.use(middlewares);
-server.use(jsonServer.bodyParser); // Para parsear o corpo das requisições POST
+server.use(jsonServer.bodyParser);
 
-// Adicione uma rota de login personalizada
 server.post('/login', (req, res) => {
   const { email, password } = req.body;
   const users = router.db.get('users').value();
@@ -86,7 +85,7 @@ server.get('/me', (req, res) => {
 });
 
 
-server.use(router); // Use o roteador do json-server para outras rotas (ex: /users)
+server.use(router);
 
 server.listen(3001, () => {
   console.log('JSON Server com JWT rodando na porta 3001');

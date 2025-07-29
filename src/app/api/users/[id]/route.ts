@@ -37,7 +37,6 @@ function writeDb(data: any) {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2))
 }
 
-// PUT - Atualizar role do usuário (apenas ADMIN)
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -71,7 +70,6 @@ export async function PUT(
       return NextResponse.json({ error: 'Usuário não encontrado' }, { status: 404 })
     }
 
-    // Não permite que o usuário mude seu próprio role
     if (userId === user.id) {
       return NextResponse.json(
         { error: 'Não é possível alterar seu próprio role' },
@@ -88,7 +86,6 @@ export async function PUT(
   }
 }
 
-// DELETE - Excluir usuário (apenas ADMIN)
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -112,7 +109,6 @@ export async function DELETE(
       return NextResponse.json({ error: 'Usuário não encontrado' }, { status: 404 })
     }
 
-    // Não permite que o usuário exclua a si mesmo
     if (userId === user.id) {
       return NextResponse.json(
         { error: 'Não é possível excluir sua própria conta' },

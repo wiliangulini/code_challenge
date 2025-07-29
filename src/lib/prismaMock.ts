@@ -9,7 +9,7 @@ vi.mock('@/lib/prisma', () => ({
 
 export const prismaMock = mockDeep<PrismaClient>()
 
-// resetar antes de cada teste
+
 beforeEach(() => {
   mockReset(prismaMock)
 })

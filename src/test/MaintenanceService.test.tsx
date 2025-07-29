@@ -1,5 +1,3 @@
-// MaintenanceService.test.ts
-
 import { prismaMock } from "@/lib/prismaMock"
 import { createMaintenance } from "@/services/maintenanceService"
 

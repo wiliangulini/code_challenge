@@ -3,7 +3,7 @@ import { API } from '@/lib/api';
 
 export async function login(email: string, password: string) {
 
-  console.log('Tentando login com:', { email, password }); // Adicione este log
+  console.log('Tentando login com:', { email, password });
 
   const res = await fetch(`${API}/login`, {
     method: 'POST',

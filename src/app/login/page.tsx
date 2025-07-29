@@ -15,10 +15,9 @@ export default function LoginPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      // Usa a função login do contexto que já atualiza o estado
+
       await login(email, password)
-      
-      // Redireciona após o login bem-sucedido
+
       router.push('/dashboard/items')
     } catch (err) {
       showAlert('Credenciais inválidas', 'error')

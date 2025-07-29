@@ -37,7 +37,6 @@ function writeDb(data: any) {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2))
 }
 
-// GET - Listar todos os usuários (apenas ADMIN)
 export async function GET(request: NextRequest) {
   try {
     const user = await verifyToken(request)
@@ -50,7 +49,7 @@ export async function GET(request: NextRequest) {
     }
 
     const db = readDb()
-    // Remove senhas dos dados retornados
+
     const users = db.users.map((user: any) => ({
       id: user.id,
       name: user.name,
