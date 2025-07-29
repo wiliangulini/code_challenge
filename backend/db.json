@@ -8,13 +8,42 @@
       "role": "ADMIN"
     },
     {
+      "id": 2,
+      "name": "User",
+      "email": "user@example.com",
+      "password": "user123",
+      "role": "OPERADOR"
+    },
+    {
       "id": "1753735818487",
       "name": "Wilian",
       "email": "wilian@email.com",
       "password": "$2b$10$4dW0PrmUSmFzgMIf5EOVrebtccXcMPoTao7pl4kJW1PYMbTYgTJMe",
       "role": "OPERADOR"
+    },
+    {
+      "id": "1753822338448",
+      "name": "testeName",
+      "email": "teste@email.com",
+      "password": "$2b$10$vs68Aaha8eyOPe52vj08MOvDRszfNDuim4snnjfckqawACW7fj1Lm",
+      "role": "OPERADOR"
     }
   ],
-  "items": [],
+  "items": [
+    {
+      "nome": "item teste",
+      "descricao": "teste item new",
+      "localizacao": "localmente",
+      "status": "Em Operação",
+      "id": 1
+    },
+    {
+      "nome": "item2",
+      "descricao": "item2",
+      "localizacao": "localmente2",
+      "status": "Em Manutenção",
+      "id": 2
+    }
+  ],
   "maintenance": []
 }

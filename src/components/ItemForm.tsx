@@ -66,7 +66,7 @@ export default function ItemForm({ item, onSuccess, onCancel }: ItemFormProps) {
           name="nome"
           value={formData.nome}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Digite o nome do item"
           required
         />
@@ -82,7 +82,7 @@ export default function ItemForm({ item, onSuccess, onCancel }: ItemFormProps) {
           value={formData.descricao}
           onChange={handleChange}
           rows={3}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Digite a descrição do item"
           required
         />
@@ -98,7 +98,7 @@ export default function ItemForm({ item, onSuccess, onCancel }: ItemFormProps) {
           name="localizacao"
           value={formData.localizacao}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Digite a localização do item"
           required
         />
@@ -113,7 +113,7 @@ export default function ItemForm({ item, onSuccess, onCancel }: ItemFormProps) {
           name="status"
           value={formData.status}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         >
           <option value={ItemStatus.OPERACAO}>Em Operação</option>

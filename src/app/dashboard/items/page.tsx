@@ -135,7 +135,7 @@ export default function ItemsPage() {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             placeholder="Buscar por nome, descrição ou localização..."
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
         <div>
@@ -146,7 +146,7 @@ export default function ItemsPage() {
             id="statusFilter"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Todos os status</option>
             <option value="Em Operação">Em Operação</option>

@@ -84,7 +84,7 @@ export default function UserForm({ onSuccess, onCancel }: UserFormProps) {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Digite o nome completo"
           required
         />
@@ -100,7 +100,7 @@ export default function UserForm({ onSuccess, onCancel }: UserFormProps) {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Digite o email"
           required
         />
@@ -116,7 +116,7 @@ export default function UserForm({ onSuccess, onCancel }: UserFormProps) {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Digite a senha (mín. 6 caracteres)"
           minLength={6}
           required
@@ -133,7 +133,7 @@ export default function UserForm({ onSuccess, onCancel }: UserFormProps) {
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Digite a senha novamente"
           minLength={6}
           required
@@ -149,7 +149,7 @@ export default function UserForm({ onSuccess, onCancel }: UserFormProps) {
           name="role"
           value={formData.role}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         >
           <option value="OPERADOR">Operador</option>
