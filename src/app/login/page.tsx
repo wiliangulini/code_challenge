@@ -2,33 +2,24 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { login } from '@/services/authService'
+import { useAuth } from '@/context/AuthContext'
 import { useAlert } from '@/context/AlertContext'
-import Cookies from 'js-cookie'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { login } = useAuth()
   const { showAlert } = useAlert()
   const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-
-      const { user, token } = await login(email, password)
-
-      console.log(user, token)
-
-      Cookies.set('token', token, {
-        expires: 7,
-        path: '/',
-        sameSite: 'strict',
-      })
-
+      // Usa a função login do contexto que já atualiza o estado
+      await login(email, password)
+      
+      // Redireciona após o login bem-sucedido
       router.push('/dashboard/items')
-
-
     } catch (err) {
       showAlert('Credenciais inválidas', 'error')
     }
