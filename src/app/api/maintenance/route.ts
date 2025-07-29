@@ -76,9 +76,12 @@ export async function POST(request: NextRequest) {
 
     const db = readDb()
     
-    // Verifica se o item existe
-    const item = db.items.find((item: any) => item.id === itemId)
+    // Verifica se o item existe (converte tipos para comparação)
+    const item = db.items.find((item: any) => 
+      String(item.id) === String(itemId) || item.id === itemId
+    )
     if (!item) {
+      console.log('Item procurado:', itemId, 'Itens disponíveis:', db.items.map((i: any) => ({ id: i.id, type: typeof i.id })))
       return NextResponse.json({ error: 'Item não encontrado' }, { status: 404 })
     }
 
@@ -97,7 +100,9 @@ export async function POST(request: NextRequest) {
     db.maintenance.push(newMaintenance)
 
     // Atualiza o status do item para "Em Operação" após manutenção
-    const itemIndex = db.items.findIndex((item: any) => item.id === itemId)
+    const itemIndex = db.items.findIndex((item: any) => 
+      String(item.id) === String(itemId) || item.id === itemId
+    )
     if (itemIndex !== -1) {
       db.items[itemIndex].status = ItemStatus.OPERACAO
       db.items[itemIndex].lastMaintenance = performedAt

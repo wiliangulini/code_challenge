@@ -35,7 +35,8 @@
       "descricao": "teste item new",
       "localizacao": "localmente",
       "status": "Em Operação",
-      "id": 1
+      "id": 1,
+      "lastMaintenance": "2025-07-29"
     },
     {
       "nome": "item2",
@@ -43,7 +44,26 @@
       "localizacao": "localmente2",
       "status": "Em Manutenção",
       "id": 2
+    },
+    {
+      "nome": "itemteste2",
+      "descricao": "itemteste2",
+      "localizacao": "localmente2item",
+      "status": "Inativo",
+      "id": 3
     }
   ],
-  "maintenance": []
+  "maintenance": [
+    {
+      "id": "1753823860901",
+      "itemId": "1",
+      "type": "Preventiva",
+      "description": "testeeeeeeeeeeeeeeeeee",
+      "performedAt": "2025-07-29",
+      "technician": "wilian gulini",
+      "nextScheduled": null,
+      "createdAt": "2025-07-29T21:17:40.901Z",
+      "createdBy": "Admin"
+    }
+  ]
 }
