@@ -111,8 +111,8 @@ npm run dev
 
 | Email | Senha | Role |
 |-------|-------|------|
-| admin@example.com | admin123 | ADMIN |
-| user@example.com | user123 | OPERADOR |
+| admin@example.com | 1234567 | ADMIN |
+| wilian@email.com | 123456 | OPERADOR |
 
 ---
 
