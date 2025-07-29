@@ -12,7 +12,7 @@ describe('RegisterForm', () => {
     fetchMock.resetMocks()
   })
 
-  it('should show validation errors', async () => {
+  it('deve mostrar erros de validação', async () => {
     render(<RegisterForm />)
     fireEvent.click(screen.getByRole('button', { name: /registrar/i }))
 
@@ -21,7 +21,7 @@ describe('RegisterForm', () => {
     })
   })
 
-  it('should show password mismatch error', async () => {
+  it('deve mostrar erro de incompatibilidade de senha', async () => {
     render(<RegisterForm />)
     fireEvent.change(screen.getByPlaceholderText(/nome/i), { target: { value: 'Test' } })
     fireEvent.change(screen.getByPlaceholderText(/e-mail/i), { target: { value: 'test@example.com' } })

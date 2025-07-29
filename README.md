@@ -122,10 +122,10 @@ npm run dev
 # Rodar todos os testes
 npm test
 
-# Testes em modo watch
+# Testes em modo observação
 npm run test:watch
 
-# Coverage de testes
+# Cobertura de testes
 npm run test:coverage
 ```
 

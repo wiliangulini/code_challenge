@@ -1,15 +1,31 @@
 import { PrismaClient } from '@prisma/client'
-import { mockDeep, mockReset } from 'vitest-mock-extended'
 
-import { vi } from 'vitest'
-
-vi.mock('@/lib/prisma', () => ({
+jest.mock('@/lib/prisma', () => ({
   prisma: prismaMock,
 }))
 
-export const prismaMock = mockDeep<PrismaClient>()
+const createMockMethod = () => jest.fn()
 
-
-beforeEach(() => {
-  mockReset(prismaMock)
-})
+export const prismaMock = {
+  maintenance: {
+    create: createMockMethod(),
+    findMany: createMockMethod(),
+    findFirst: createMockMethod(),
+    update: createMockMethod(),
+    delete: createMockMethod(),
+  },
+  item: {
+    create: createMockMethod(),
+    findMany: createMockMethod(),
+    findFirst: createMockMethod(),
+    update: createMockMethod(),
+    delete: createMockMethod(),
+  },
+  user: {
+    create: createMockMethod(),
+    findMany: createMockMethod(),
+    findFirst: createMockMethod(),
+    update: createMockMethod(),
+    delete: createMockMethod(),
+  },
+} as unknown as jest.Mocked<PrismaClient>
