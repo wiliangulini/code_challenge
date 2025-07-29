@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { jwtVerify } from 'jose'
-import { maintenanceSchema } from '@/lib/validators/maintenanceSchema'
-import { ItemStatus } from '@/types/item'
 import fs from 'fs'
 import path from 'path'
 
@@ -39,7 +37,7 @@ function writeDb(data: any) {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2))
 }
 
-// GET - Listar todas as manutenções
+// GET - Listar todos os itens
 export async function GET(request: NextRequest) {
   try {
     const user = await verifyToken(request)
@@ -48,13 +46,13 @@ export async function GET(request: NextRequest) {
     }
 
     const db = readDb()
-    return NextResponse.json(db.maintenance)
+    return NextResponse.json(db.items)
   } catch (error) {
     return NextResponse.json({ error: 'Erro interno do servidor' }, { status: 500 })
   }
 }
 
-// POST - Criar nova manutenção
+// POST - Criar novo item
 export async function POST(request: NextRequest) {
   try {
     const user = await verifyToken(request)
@@ -63,49 +61,30 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const result = maintenanceSchema.safeParse(body)
-    
-    if (!result.success) {
+    const { nome, descricao, localizacao, status } = body
+
+    if (!nome || !descricao || !localizacao || !status) {
       return NextResponse.json(
-        { error: 'Dados inválidos', details: result.error.issues },
+        { error: 'Todos os campos são obrigatórios' },
         { status: 400 }
       )
     }
 
-    const { itemId, type, description, performedAt, technician, nextScheduled } = result.data
-
     const db = readDb()
-    
-    // Verifica se o item existe
-    const item = db.items.find((item: any) => item.id === itemId)
-    if (!item) {
-      return NextResponse.json({ error: 'Item não encontrado' }, { status: 404 })
-    }
-
-    const newMaintenance = {
+    const newItem = {
       id: Date.now().toString(),
-      itemId,
-      type,
-      description,
-      performedAt,
-      technician,
-      nextScheduled: nextScheduled || null,
+      nome,
+      descricao,
+      localizacao,
+      status,
       createdAt: new Date().toISOString(),
       createdBy: user.name
     }
 
-    db.maintenance.push(newMaintenance)
-
-    // Atualiza o status do item para "Em Operação" após manutenção
-    const itemIndex = db.items.findIndex((item: any) => item.id === itemId)
-    if (itemIndex !== -1) {
-      db.items[itemIndex].status = ItemStatus.OPERACAO
-      db.items[itemIndex].lastMaintenance = performedAt
-    }
-
+    db.items.push(newItem)
     writeDb(db)
 
-    return NextResponse.json(newMaintenance, { status: 201 })
+    return NextResponse.json(newItem, { status: 201 })
   } catch (error) {
     return NextResponse.json({ error: 'Erro interno do servidor' }, { status: 500 })
   }

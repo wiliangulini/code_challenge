@@ -8,13 +8,6 @@
       "role": "ADMIN"
     },
     {
-      "id": 2,
-      "name": "User",
-      "email": "user@example.com",
-      "password": "user123",
-      "role": "OPERADOR"
-    },
-    {
       "id": "1753735818487",
       "name": "Wilian",
       "email": "wilian@email.com",
