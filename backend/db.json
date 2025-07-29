@@ -1,0 +1,27 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@example.com",
+      "password": "$2a$12$8Q.plLRDrNIWJHfkHQLOYO71SUzLC11Y6gQqjl7Hb4gVdryEt0Q0q",
+      "role": "ADMIN"
+    },
+    {
+      "id": 2,
+      "name": "User",
+      "email": "user@example.com",
+      "password": "user123",
+      "role": "OPERADOR"
+    },
+    {
+      "id": "1753735818487",
+      "name": "Wilian",
+      "email": "wilian@email.com",
+      "password": "$2b$10$4dW0PrmUSmFzgMIf5EOVrebtccXcMPoTao7pl4kJW1PYMbTYgTJMe",
+      "role": "OPERADOR"
+    }
+  ],
+  "items": [],
+  "maintenance": []
+}
