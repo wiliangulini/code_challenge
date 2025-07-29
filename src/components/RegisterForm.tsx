@@ -6,6 +6,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { API } from '@/lib/api';
+import { fetchWithAuth } from '@/lib/fetchWithAuth'
 
 
 const registerSchema = z.object({
@@ -36,7 +37,7 @@ export default function RegisterForm() {
   const onSubmit = async (data: RegisterFormData) => {
     setServerError(null)
 
-    const res = await fetch(`${API}/register`, {
+    const res = await fetchWithAuth(`${API}/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

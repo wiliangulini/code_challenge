@@ -1,9 +1,11 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 import { User } from '@/types/user'
 import { API } from '@/lib/api'
+import { fetchWithAuth } from '@/lib/fetchWithAuth'
 
 interface AuthContextProps {
   user: User | null
@@ -24,10 +26,11 @@ const AuthContext = createContext<AuthContextProps>({
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
   const login = async (email: string, password: string) => {
     try {
-      const res = await fetch(`${API}/login`, {
+      const res = await fetchWithAuth(`${API}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -57,6 +60,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     Cookies.remove('token')
     setUser(null)
+    router.push('/login')
   }
 
   useEffect(() => {
@@ -70,7 +74,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log("Token atual:", token)
 
       try {
-        const res = await fetch(`${API}/me`, {
+        const res = await fetchWithAuth(`${API}/me`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

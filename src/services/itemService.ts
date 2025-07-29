@@ -1,4 +1,5 @@
 import { API } from '@/lib/api'
+import { fetchWithAuth } from '@/lib/fetchWithAuth'
 import { Item } from '@/types/item'
 import Cookies from 'js-cookie'
 
@@ -11,7 +12,7 @@ const getAuthHeaders = () => {
 }
 
 export async function getItems(): Promise<Item[]> {
-  const res = await fetch(`${API}/items`, {
+  const res = await fetchWithAuth(`${API}/items`, {
     headers: getAuthHeaders()
   })
   
@@ -23,7 +24,7 @@ export async function getItems(): Promise<Item[]> {
 }
 
 export async function getItemById(id: string): Promise<Item> {
-  const res = await fetch(`${API}/items/${id}`, {
+  const res = await fetchWithAuth(`${API}/items/${id}`, {
     headers: getAuthHeaders()
   })
   
@@ -35,7 +36,7 @@ export async function getItemById(id: string): Promise<Item> {
 }
 
 export async function createItem(item: Omit<Item, 'id'>): Promise<Item> {
-  const res = await fetch(`${API}/items`, {
+  const res = await fetchWithAuth(`${API}/items`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(item),
@@ -49,7 +50,7 @@ export async function createItem(item: Omit<Item, 'id'>): Promise<Item> {
 }
 
 export async function updateItem(id: string, item: Omit<Item, 'id'>): Promise<Item> {
-  const res = await fetch(`${API}/items/${id}`, {
+  const res = await fetchWithAuth(`${API}/items/${id}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify(item),
@@ -63,7 +64,7 @@ export async function updateItem(id: string, item: Omit<Item, 'id'>): Promise<It
 }
 
 export async function deleteItem(id: string): Promise<void> {
-  const res = await fetch(`${API}/items/${id}`, {
+  const res = await fetchWithAuth(`${API}/items/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders(),
   })

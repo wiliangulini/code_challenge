@@ -1,5 +1,6 @@
 import { Role } from "@/types/role";
 import { API } from '@/lib/api';
+import { fetchWithAuth } from "@/lib/fetchWithAuth";
 
 interface RegisterData {
   name: string;
@@ -9,7 +10,7 @@ interface RegisterData {
 }
 
 export async function register({ name, email, password, role = Role.OPERADOR }: RegisterData) {
-  const res = await fetch(`${API}/register`, {
+  const res = await fetchWithAuth(`${API}/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, email, password, role }),
