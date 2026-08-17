@@ -4,6 +4,10 @@
 
 Este projeto é um **Sistema de Controle e Manutenção** completo desenvolvido com Next.js 15 e React 19, que permite gerenciar itens e suas respectivas manutenções com controle de acesso baseado em roles (ADMIN/OPERADOR).
 
+## 🛠️ Stack
+
+Next.js 15 · React 19 · TypeScript · Tailwind CSS · Prisma · Express (backend de apoio) · JWT · Jest + Testing Library
+
 ## 🏗️ Arquitetura do Projeto
 
 ### Estrutura de Diretórios
